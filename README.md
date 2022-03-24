@@ -5,7 +5,7 @@
 ## Install
 
 ```shell
-go get github.com/xiaoma20082008/httl-go.git
+go get github.com/xiaoma20082008/httl-go.git httl
 ```
 
 ## Usage
