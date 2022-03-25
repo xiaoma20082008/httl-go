@@ -31,18 +31,32 @@ type BaseResource struct {
 	httl.Resource
 }
 
-func (r *BaseResource) Name() string         { return r.name }
-func (r *BaseResource) Encoding() string     { return r.encoding }
-func (r *BaseResource) Locale() string       { return r.locale }
-func (r *BaseResource) LastModified() uint64 { return r.lastModified }
-func (r *BaseResource) Length() uint64       { return -1 }
+func (r *BaseResource) Name() string {
+	return r.name
+}
+func (r *BaseResource) Encoding() string {
+	return r.encoding
+}
+func (r *BaseResource) Locale() string {
+	return r.locale
+}
+func (r *BaseResource) LastModified() uint64 {
+	return r.lastModified
+}
+func (r *BaseResource) Length() uint64 {
+	return -1
+}
 func (r *BaseResource) Source() (string, error) {
 	reader, err := r.Open()
-	defer (*reader).Close()
 	if err != nil {
 		return "", err
 	}
+	defer reader.Close()
 	return utils.ReadFully(reader)
 }
-func (r *BaseResource) Open() (*io.ReadCloser, error) { panic("") }
-func (r *BaseResource) Engine() httl.Engine           { return r.engine }
+func (r *BaseResource) Open() (io.ReadCloser, error) {
+	panic("")
+}
+func (r *BaseResource) Engine() httl.Engine {
+	return r.engine
+}

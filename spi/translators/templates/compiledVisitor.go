@@ -15,3 +15,16 @@
  */
 
 package templates
+
+import (
+	"github.com/xiaoma20082008/httl-go"
+	"github.com/xiaoma20082008/httl-go/ast"
+)
+
+type CompiledVisitor struct {
+	ast.TreeVisitor
+}
+
+func (v *CompiledVisitor) Visit(node httl.Node) error {
+	return nil
+}

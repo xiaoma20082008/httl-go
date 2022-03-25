@@ -22,3 +22,8 @@ func TestLoadProperties(t *testing.T) {
 	s, e := LoadProperties("./testdata/test.properties")
 	t.Log(s, e)
 }
+
+func TestReadFile(t *testing.T) {
+	s, e := ReadFile("./testdata/test.properties")
+	t.Log(s, e)
+}

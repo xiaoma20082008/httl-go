@@ -24,9 +24,18 @@ import (
 	"strings"
 )
 
-func ReadFully(reader *io.ReadCloser) (string, error) {
+func ReadFile(filepath string) (string, error) {
+	file, e := os.Open(filepath)
+	if e != nil {
+		return "", e
+	}
+	defer file.Close()
+	return ReadFully(file)
+}
+
+func ReadFully(reader io.ReadCloser) (string, error) {
 	buf := new(strings.Builder)
-	_, err := io.Copy(buf, *reader)
+	_, err := io.Copy(buf, reader)
 	if err != nil {
 		return "", err
 	}

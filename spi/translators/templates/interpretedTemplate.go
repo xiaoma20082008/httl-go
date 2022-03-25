@@ -21,11 +21,11 @@ import (
 	"io"
 )
 
-type InterpretedTemplate struct {
+type interpretedTemplate struct {
 	BaseTemplate
 }
 
-func (t *InterpretedTemplate) Evaluate(o map[string]any) (string, error) {
+func (t *interpretedTemplate) Evaluate(o map[string]any) (string, error) {
 	sw := StringWriter{}
 	defer sw.Close()
 	if t.Render(o, &sw) != nil {
@@ -34,11 +34,11 @@ func (t *InterpretedTemplate) Evaluate(o map[string]any) (string, error) {
 	return sw.ToString(), nil
 }
 
-func (t *InterpretedTemplate) Render(o map[string]any, w io.Writer) error {
+func (t *interpretedTemplate) Render(o map[string]any, w io.Writer) error {
 	v := InterpretedVisitor{}
 	return t.Accept(&v)
 }
 
 func NewInterpretedTemplate() httl.Template {
-	return &InterpretedTemplate{}
+	return &interpretedTemplate{}
 }

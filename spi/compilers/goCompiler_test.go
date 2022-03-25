@@ -16,16 +16,26 @@
 
 package compilers
 
-import "testing"
+import (
+	"github.com/xiaoma20082008/httl-go/utils"
+	"go/printer"
+	"go/token"
+	"os"
+	"testing"
+)
 
 func TestNewGoCompiler(t *testing.T) {
 	compiler := NewGoCompiler()
-	code := `
-import "fmt"
-
-func aaa() {
-	fmt.Println("aaa")
-}
-`
-	compiler.Compile(code)
+	code, e := utils.ReadFile("./testdata/aboutCompiledTemplate.txt")
+	if e != nil {
+		panic("read file failed")
+	}
+	ast, e := compiler.Compile(code)
+	if e != nil {
+		panic("compile code failed")
+	}
+	e = printer.Fprint(os.Stdout, token.NewFileSet(), ast)
+	if e != nil {
+		panic("print ast failed")
+	}
 }

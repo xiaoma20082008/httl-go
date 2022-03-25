@@ -14,17 +14,31 @@
  * limitations under the License.
  */
 
-package httl
+package templates
 
-import "io"
+import (
+	"github.com/xiaoma20082008/httl-go"
+	"io"
+)
 
-type Resource interface {
-	Name() string
-	Encoding() string
-	Locale() string
-	LastModified() uint64
-	Length() uint64
-	Source() (string, error)
-	Open() (io.ReadCloser, error)
-	Engine() Engine
+type ${name}CompiledTemplate struct {
+	BaseTemplate
+}
+
+func (t *${name}CompiledTemplate) Evaluate(o map[string]any) (string, error) {
+	sw := StringWriter{}
+	defer sw.Close()
+	if t.Render(o, &sw) != nil {
+		return "", nil
+	}
+	return sw.ToString(), nil
+}
+
+func (t *${name}CompiledTemplate) Render(o map[string]any, w io.Writer) error {
+	v := CompiledVisitor{}
+	return t.Accept(&v)
+}
+
+func New${name}CompiledTemplate httl.Template {
+	return &${name}CompiledTemplate{}
 }

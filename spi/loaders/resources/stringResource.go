@@ -27,6 +27,6 @@ type StringResource struct {
 
 func (r *StringResource) Length() uint64 { return uint64(len(r.source)) }
 
-func (r *StringResource) Open() (*io.ReadCloser, error) {
+func (r *StringResource) Open() (io.ReadCloser, error) {
 	return nil, nil
 }
