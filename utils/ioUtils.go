@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-package httl
+package utils
 
-import "io"
+import (
+	"io"
+	"strings"
+)
 
-type Resource interface {
-	Name() string
-	Encoding() string
-	Locale() string
-	LastModified() uint64
-	Length() uint64
-	Source() (string, error)
-	Open() (*io.ReadCloser, error)
-	Engine() Engine
+func ReadFully(reader *io.ReadCloser) (string, error) {
+	buf := new(strings.Builder)
+	_, err := io.Copy(buf, *reader)
+	if err != nil {
+		return "", err
+	}
+	return buf.String(), nil
 }

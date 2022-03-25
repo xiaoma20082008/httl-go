@@ -18,8 +18,8 @@ package resources
 
 import (
 	"github.com/xiaoma20082008/httl-go"
+	"github.com/xiaoma20082008/httl-go/utils"
 	"io"
-	"strings"
 )
 
 type BaseResource struct {
@@ -38,15 +38,11 @@ func (r *BaseResource) LastModified() uint64 { return r.lastModified }
 func (r *BaseResource) Length() uint64       { return -1 }
 func (r *BaseResource) Source() (string, error) {
 	reader, err := r.Open()
+	defer (*reader).Close()
 	if err != nil {
 		return "", err
 	}
-	buf := new(strings.Builder)
-	_, err = io.Copy(buf, reader)
-	if err != nil {
-		return "", err
-	}
-	return buf.String(), nil
+	return utils.ReadFully(reader)
 }
-func (r *BaseResource) Open() (io.ReadCloser, error) { panic("") }
-func (r *BaseResource) Engine() httl.Engine          { return r.engine }
+func (r *BaseResource) Open() (*io.ReadCloser, error) { panic("") }
+func (r *BaseResource) Engine() httl.Engine           { return r.engine }

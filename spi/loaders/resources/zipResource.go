@@ -29,7 +29,7 @@ type ZipResource struct {
 
 func (r *ZipResource) LastModified() uint64 { return r.lastModified }
 
-func (r *ZipResource) Open() (io.ReadCloser, error) {
+func (r *ZipResource) Open() (*io.ReadCloser, error) {
 	zip.OpenReader(r.path)
 	return nil, nil
 }

@@ -21,16 +21,16 @@ import (
 )
 
 func main() {
-	template, err := httl.NewEngine().GetTemplate("about", "", "UTF-8")
-	if err != nil {
+    template, err := httl.NewEngine().GetTemplate("about", "", "UTF-8")
+    if err != nil {
+        return
+    }
+    args := make(map[string]any)
+    result, err := template.Evaluate(args)
+    if err != nil {
 		return
 	}
-	args := make(map[string]any)
-	result, err := template.Evaluate(args)
-	if err != nil {
-		return
-	}
-	fmt.Println(result)
+    fmt.Println(result)
 }
 ```
 
