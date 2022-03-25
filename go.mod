@@ -17,3 +17,5 @@
 module github.com/xiaoma20082008/httl-go
 
 go 1.18
+
+require github.com/magiconair/properties v1.8.6

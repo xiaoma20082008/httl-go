@@ -27,15 +27,15 @@ type FileResource struct {
 	path string
 }
 
-func (fr *FileResource) Open() (io.ReadCloser, error) {
+func (fr *FileResource) Open() (*io.ReadCloser, error) {
 	if _, e := os.Stat(fr.path); e != nil {
 		return nil, e
 	}
-	file, e := os.OpenFile(fr.path, os.O_RDWR, 0777)
+	_, e := os.OpenFile(fr.path, os.O_RDWR, 0777)
 	if e != nil {
 		return nil, e
 	}
-	return file, nil
+	return nil, nil
 }
 
 func NewFileResource(e httl.Engine, name string, locale string, encoding string, path string) *FileResource {

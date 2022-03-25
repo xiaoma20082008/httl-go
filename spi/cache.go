@@ -17,5 +17,8 @@
 package spi
 
 type Cache interface {
-	Get(key string) (any, bool)
+	Has(key string) bool
+	Put(key string, value any)
+	Get(key string) any
+	TryGet(key string, out *any) bool
 }

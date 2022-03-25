@@ -16,8 +16,22 @@
 
 package compilers
 
-import "github.com/xiaoma20082008/httl-go/spi"
+import (
+	"github.com/xiaoma20082008/httl-go/spi"
+	"go/ast"
+	"go/parser"
+	"go/token"
+)
 
-type GoCompiler struct {
+type goCompiler struct {
 	spi.Compiler
+}
+
+func (c *goCompiler) Compile(code string) (*ast.File, error) {
+	fs := token.NewFileSet()
+	return parser.ParseFile(fs, "template2022.go", code, parser.AllErrors)
+}
+
+func NewGoCompiler() spi.Compiler {
+	return &goCompiler{}
 }

@@ -18,14 +18,38 @@ package caches
 
 import "github.com/xiaoma20082008/httl-go/spi"
 
-type MapCache struct {
+type mapCache struct {
 	cache map[string]any
 	spi.Cache
 }
 
-func (c *MapCache) Get(key string) (any, bool) {
+func (c *mapCache) Has(key string) bool {
+	return c.TryGet(key, nil)
+}
+
+func (c *mapCache) Put(key string, value any) {
+	c.cache[key] = value
+}
+
+func (c *mapCache) Get(key string) any {
 	if value, ok := c.cache[key]; ok {
-		return value, true
+		return value
 	}
-	return nil, false
+	return nil
+}
+
+func (c *mapCache) TryGet(key string, out *any) bool {
+	if value, ok := c.cache[key]; ok {
+		if out != nil {
+			*out = value
+		}
+		return true
+	}
+	return false
+}
+
+func NewMapCache() spi.Cache {
+	return &mapCache{
+		cache: map[string]any{},
+	}
 }

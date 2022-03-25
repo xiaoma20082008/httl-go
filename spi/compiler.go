@@ -16,6 +16,8 @@
 
 package spi
 
+import "go/ast"
+
 type Compiler interface {
-	Compile()
+	Compile(code string) (*ast.File, error)
 }

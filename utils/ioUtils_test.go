@@ -14,31 +14,11 @@
  * limitations under the License.
  */
 
-package templates
+package utils
 
-import (
-	"github.com/xiaoma20082008/httl-go"
-	"io"
-)
+import "testing"
 
-type InterpretedTemplate struct {
-	BaseTemplate
-}
-
-func (t *InterpretedTemplate) Evaluate(o map[string]any) (string, error) {
-	sw := StringWriter{}
-	defer sw.Close()
-	if t.Render(o, &sw) != nil {
-		return "", nil
-	}
-	return sw.ToString(), nil
-}
-
-func (t *InterpretedTemplate) Render(o map[string]any, w io.Writer) error {
-	v := InterpretedVisitor{}
-	return t.Accept(&v)
-}
-
-func NewInterpretedTemplate() httl.Template {
-	return &InterpretedTemplate{}
+func TestLoadProperties(t *testing.T) {
+	s, e := LoadProperties("./testdata/test.properties")
+	t.Log(s, e)
 }

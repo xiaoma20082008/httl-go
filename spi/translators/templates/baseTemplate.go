@@ -43,14 +43,14 @@ func (t *BaseTemplate) Evaluate(o map[string]any) (string, error) {
 	panic("TODO IMPLEMENTATION")
 }
 
-func (t *BaseTemplate) Name() string                 { return t.name }
-func (t *BaseTemplate) Encoding() string             { return t.encoding }
-func (t *BaseTemplate) Locale() string               { return t.locale }
-func (t *BaseTemplate) LastModified() uint64         { return t.lastModified }
-func (t *BaseTemplate) Length() uint64               { return t.length }
-func (t *BaseTemplate) Source() (string, error)      { return t.resource.Source() }
-func (t *BaseTemplate) Open() (io.ReadCloser, error) { return t.resource.Open() }
-func (t *BaseTemplate) Engine() httl.Engine          { return t.resource.Engine() }
+func (t *BaseTemplate) Name() string                  { return t.name }
+func (t *BaseTemplate) Encoding() string              { return t.encoding }
+func (t *BaseTemplate) Locale() string                { return t.locale }
+func (t *BaseTemplate) LastModified() uint64          { return t.lastModified }
+func (t *BaseTemplate) Length() uint64                { return t.length }
+func (t *BaseTemplate) Source() (string, error)       { return t.resource.Source() }
+func (t *BaseTemplate) Open() (*io.ReadCloser, error) { return t.resource.Open() }
+func (t *BaseTemplate) Engine() httl.Engine           { return t.resource.Engine() }
 
 func (t *BaseTemplate) Accept(v httl.Visitor) error {
 	if v.Visit(t) != nil {

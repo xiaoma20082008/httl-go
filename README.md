@@ -5,7 +5,7 @@
 ## Install
 
 ```shell
-go get github.com/xiaoma20082008/httl-go.git httl
+go get github.com/xiaoma20082008/httl-go.git
 ```
 
 ## Usage
@@ -36,8 +36,20 @@ func main() {
 
 ### configuration
 
-```shell
-touch httl.properties
+```properties
+engine=engines.NewDefaultEngine
+compiler=Compiler
+converter=Converter
+filter=Filter
+formatter=Formatter
+interceptor=Interceptor
+listener=Listener
+loader=loaders.NewFileLoader
+logger=Logger
+parser=Parser
+resolver=resolvers.NewMultiResolver
+resolvers=resolvers.NewGlobalResolver;resolvers.NewSessionResolver;resolvers.NewEngineResolver
+translator=Translator
 ```
 
 ## Credit

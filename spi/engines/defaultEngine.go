@@ -21,9 +21,15 @@ import (
 	"github.com/xiaoma20082008/httl-go/spi"
 	"github.com/xiaoma20082008/httl-go/spi/loaders"
 	"github.com/xiaoma20082008/httl-go/spi/resolvers"
+	"github.com/xiaoma20082008/httl-go/utils"
 )
 
-type DefaultEngine struct {
+const (
+	DevelopConfigurationFile = "httl.properties"
+	DefaultConfigurationFile = "httl-default.properties"
+)
+
+type defaultEngine struct {
 	name            string
 	defaultEncoding string
 	defaultLocale   string
@@ -50,22 +56,22 @@ type DefaultEngine struct {
 	httl.Engine
 }
 
-func (e *DefaultEngine) GetName() string    { return e.name }
-func (e *DefaultEngine) GetVersion() string { return e.version }
+func (e *defaultEngine) GetName() string    { return e.name }
+func (e *defaultEngine) GetVersion() string { return e.version }
 
-func (e *DefaultEngine) GetProperty(key string, dv string) string {
+func (e *defaultEngine) GetProperty(key string, dv string) string {
 	v, ok := e.properties[key]
 	if ok {
 		return v.(string)
 	}
 	return dv
 }
-func (e *DefaultEngine) GetAny(key string) any                { return nil }
-func (e *DefaultEngine) GetBool(key string, dv bool) bool     { return false }
-func (e *DefaultEngine) GetInt32(key string, dv string) int32 { return 0 }
-func (e *DefaultEngine) GetInt64(key string, dv string) int64 { return 0 }
+func (e *defaultEngine) GetAny(key string) any                { return nil }
+func (e *defaultEngine) GetBool(key string, dv bool) bool     { return false }
+func (e *defaultEngine) GetInt32(key string, dv string) int32 { return 0 }
+func (e *defaultEngine) GetInt64(key string, dv string) int64 { return 0 }
 
-func (e *DefaultEngine) GetTemplate(name string, locale string, encoding string) (httl.Template, error) {
+func (e *defaultEngine) GetTemplate(name string, locale string, encoding string) (httl.Template, error) {
 	if e.cache == nil {
 		return e.parseTemplate(nil, name, locale, encoding)
 	}
@@ -78,7 +84,7 @@ func (e *DefaultEngine) GetTemplate(name string, locale string, encoding string)
 	return nil, nil
 }
 
-func (e *DefaultEngine) parseTemplate(r *httl.Resource, name string, locale string, encoding string) (httl.Template, error) {
+func (e *defaultEngine) parseTemplate(r *httl.Resource, name string, locale string, encoding string) (httl.Template, error) {
 	var resource = r
 	if resource == nil {
 		rr, _ := e.GetResource(name, locale, encoding)
@@ -92,14 +98,14 @@ func (e *DefaultEngine) parseTemplate(r *httl.Resource, name string, locale stri
 	return e.translator.Translate(resource, &node)
 }
 
-func (e *DefaultEngine) GetResource(name string, locale string, encoding string) (httl.Resource, error) {
+func (e *defaultEngine) GetResource(name string, locale string, encoding string) (httl.Resource, error) {
 	if e.stringLoader.Exists(name, locale, encoding) {
 		return e.stringLoader.Load(name, locale, encoding)
 	}
 	return e.loader.Load(name, locale, encoding)
 }
 
-func (e *DefaultEngine) NewContext(parent map[string]any, current map[string]any) map[string]any {
+func (e *defaultEngine) NewContext(parent map[string]any, current map[string]any) map[string]any {
 	res := make(map[string]any, len(parent)+len(current))
 	for k, v := range parent {
 		res[k] = v
@@ -110,7 +116,7 @@ func (e *DefaultEngine) NewContext(parent map[string]any, current map[string]any
 	return res
 }
 
-func (e *DefaultEngine) initialize() error {
+func (e *defaultEngine) initialize() error {
 	e.resolver = resolvers.NewMultiResolver()
 	e.resolver = resolvers.NewGlobalResolver()
 	e.resolver = resolvers.NewSessionResolver()
@@ -118,9 +124,37 @@ func (e *DefaultEngine) initialize() error {
 	return nil
 }
 
-func NewDefaultEngine() *DefaultEngine {
-	engine := &DefaultEngine{
-		properties: make(map[string]any),
+func mergeProperties(d, c map[string]string) map[string]string {
+	if d == nil {
+		return c
+	}
+	if c == nil {
+		return d
+	}
+	if d == nil && c == nil {
+		return map[string]string{}
+	}
+
+	res := make(map[string]string, len(d)+len(c))
+
+	for k, v := range d {
+		res[k] = v
+	}
+	for k, v := range c {
+		res[k] = v
+	}
+	return res
+}
+
+func NewDefaultEngine() httl.Engine {
+	defaultConfiguration, _ := utils.LoadProperties(DefaultConfigurationFile)
+	currentConfiguration, _ := utils.LoadProperties(DevelopConfigurationFile)
+	configuration := mergeProperties(defaultConfiguration, currentConfiguration)
+	if len(configuration) == 0 {
+		panic("")
+	}
+	engine := &defaultEngine{
+		properties: map[string]any{},
 	}
 	err := engine.initialize()
 	if err != nil {

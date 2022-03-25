@@ -14,10 +14,22 @@
  * limitations under the License.
  */
 
-package compilers
+package caches
 
-import "github.com/xiaoma20082008/httl-go/spi"
+import (
+	"github.com/magiconair/properties/assert"
+	"testing"
+)
 
-type LuaCompiler struct {
-	spi.Compiler
+func TestNewMapCache(t *testing.T) {
+	cache := NewMapCache()
+	v1 := 123
+	cache.Put("Tom", v1)
+	v2 := cache.Get("Tom")
+	assert.Equal(t, 123, v2)
+	v3 := cache.Get("Tim")
+	assert.Equal(t, v3, nil)
+	var v4 any = ""
+	v5 := cache.TryGet("Tim", &v4)
+	assert.Equal(t, v5, false)
 }
