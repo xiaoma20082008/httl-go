@@ -16,7 +16,7 @@
 
 package caches
 
-import "github.com/xiaoma20082008/httl/spi"
+import "github.com/xiaoma20082008/httl-go/spi"
 
 type MapCache struct {
 	cache map[string]any

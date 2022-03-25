@@ -16,7 +16,7 @@
 
 package ast
 
-import "github.com/xiaoma20082008/httl"
+import "github.com/xiaoma20082008/httl-go"
 
 type TreeVisitor struct {
 	httl.Visitor

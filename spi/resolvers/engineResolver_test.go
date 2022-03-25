@@ -17,7 +17,7 @@
 package resolvers
 
 import (
-	"github.com/xiaoma20082008/httl/spi/engines"
+	"github.com/xiaoma20082008/httl-go/spi/engines"
 	"testing"
 )
 

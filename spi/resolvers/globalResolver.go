@@ -16,7 +16,7 @@
 
 package resolvers
 
-import "github.com/xiaoma20082008/httl/spi"
+import "github.com/xiaoma20082008/httl-go/spi"
 
 var global map[string]any
 

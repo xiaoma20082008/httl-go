@@ -16,7 +16,7 @@
 
 package spi
 
-import "github.com/xiaoma20082008/httl"
+import "github.com/xiaoma20082008/httl-go"
 
 type Translator interface {
 	Translate(r *httl.Resource, n *httl.Node) (httl.Template, error)

@@ -14,6 +14,6 @@
 // limitations under the License.
 //
 
-module github.com/xiaoma20082008/httl
+module github.com/xiaoma20082008/httl-go
 
 go 1.18

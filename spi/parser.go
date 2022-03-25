@@ -16,7 +16,7 @@
 
 package spi
 
-import "github.com/xiaoma20082008/httl"
+import "github.com/xiaoma20082008/httl-go"
 
 type Parser interface {
 	Parse(source string) (httl.Node, error)

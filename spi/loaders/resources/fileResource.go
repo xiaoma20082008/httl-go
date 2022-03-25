@@ -17,7 +17,7 @@
 package resources
 
 import (
-	"github.com/xiaoma20082008/httl"
+	"github.com/xiaoma20082008/httl-go"
 	"io"
 	"os"
 )

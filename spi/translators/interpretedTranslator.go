@@ -17,9 +17,9 @@
 package translators
 
 import (
-	"github.com/xiaoma20082008/httl"
-	"github.com/xiaoma20082008/httl/spi"
-	"github.com/xiaoma20082008/httl/spi/translators/templates"
+	"github.com/xiaoma20082008/httl-go"
+	"github.com/xiaoma20082008/httl-go/spi"
+	"github.com/xiaoma20082008/httl-go/spi/translators/templates"
 )
 
 type InterpretedTranslator struct {

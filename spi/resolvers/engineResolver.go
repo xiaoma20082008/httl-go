@@ -17,8 +17,8 @@
 package resolvers
 
 import (
-	"github.com/xiaoma20082008/httl"
-	"github.com/xiaoma20082008/httl/spi"
+	"github.com/xiaoma20082008/httl-go"
+	"github.com/xiaoma20082008/httl-go/spi"
 )
 
 type EngineResolver struct {

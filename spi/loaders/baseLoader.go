@@ -17,7 +17,7 @@
 package loaders
 
 import (
-	"github.com/xiaoma20082008/httl"
+	"github.com/xiaoma20082008/httl-go"
 )
 
 type BaseLoader struct {

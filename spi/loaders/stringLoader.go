@@ -17,9 +17,9 @@
 package loaders
 
 import (
-	"github.com/xiaoma20082008/httl"
-	"github.com/xiaoma20082008/httl/spi"
-	"github.com/xiaoma20082008/httl/spi/loaders/resources"
+	"github.com/xiaoma20082008/httl-go"
+	"github.com/xiaoma20082008/httl-go/spi"
+	"github.com/xiaoma20082008/httl-go/spi/loaders/resources"
 )
 
 type StringLoader struct {

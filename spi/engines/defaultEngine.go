@@ -17,10 +17,10 @@
 package engines
 
 import (
-	"github.com/xiaoma20082008/httl"
-	"github.com/xiaoma20082008/httl/spi"
-	"github.com/xiaoma20082008/httl/spi/loaders"
-	"github.com/xiaoma20082008/httl/spi/resolvers"
+	"github.com/xiaoma20082008/httl-go"
+	"github.com/xiaoma20082008/httl-go/spi"
+	"github.com/xiaoma20082008/httl-go/spi/loaders"
+	"github.com/xiaoma20082008/httl-go/spi/resolvers"
 )
 
 type DefaultEngine struct {

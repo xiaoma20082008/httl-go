@@ -17,7 +17,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/xiaoma20082008/httl"
+	httl "github.com/xiaoma20082008/httl-go"
 )
 
 func main() {

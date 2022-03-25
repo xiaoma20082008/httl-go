@@ -16,7 +16,7 @@
 
 package spi
 
-import "github.com/xiaoma20082008/httl"
+import "github.com/xiaoma20082008/httl-go"
 
 type Interceptor interface {
 	Render(session *httl.Session, l *Listener) error

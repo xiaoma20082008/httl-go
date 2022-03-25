@@ -17,8 +17,8 @@
 package templates
 
 import (
-	"github.com/xiaoma20082008/httl"
-	"github.com/xiaoma20082008/httl/ast"
+	"github.com/xiaoma20082008/httl-go"
+	"github.com/xiaoma20082008/httl-go/ast"
 )
 
 type InterpretedVisitor struct {
