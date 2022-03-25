@@ -16,8 +16,8 @@ go get github.com/xiaoma20082008/httl-go.git httl
 package main
 
 import (
-	"fmt"
-	httl "github.com/xiaoma20082008/httl-go"
+    "fmt"
+    httl "github.com/xiaoma20082008/httl-go"
 )
 
 func main() {
