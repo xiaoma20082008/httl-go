@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package resolvers
+package loggers
 
-import (
-	"github.com/xiaoma20082008/httl-go/spi/engines"
-	"testing"
-)
+import "log"
 
-func TestNewEngineResolver(t *testing.T) {
-	r := NewEngineResolver()
-	r.SetEngine(engines.NewDefaultEngine())
-	r.Resolve("")
-	t.Log(r)
+type GoLogger struct {
+	logger *log.Logger
 }
 
-func TestResolve(t *testing.T) {
+func (l *GoLogger) Trace(msg string, v ...any) { l.logger.Printf(msg, v) }
+func (l *GoLogger) Debug(msg string, v ...any) { l.logger.Printf(msg, v) }
+func (l *GoLogger) Info(msg string, v ...any)  { l.logger.Printf(msg, v) }
+func (l *GoLogger) Warn(msg string, v ...any)  { l.logger.Printf(msg, v) }
+func (l *GoLogger) Error(msg string, v ...any) { l.logger.Printf(msg, v) }
 
+func NewGoLogger() GoLogger {
+	return GoLogger{
+		logger: log.Default(),
+	}
 }

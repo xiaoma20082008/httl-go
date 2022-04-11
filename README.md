@@ -1,4 +1,4 @@
-# Hyper-Text Template Language(HTTL) Golang port
+# Hyper-Text Template Language(HTTL) Written by Go
 
 ## Documentation
 

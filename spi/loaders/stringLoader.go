@@ -44,6 +44,6 @@ func (l *StringLoader) Add(name string, locale string, encoding string) {
 	l.resources[getTemplateKey(name, locale, encoding)] = resources.StringResource{}
 }
 
-func getTemplateKey(name string, locale string, encoding string) string {
+func getTemplateKey(name, locale, encoding string) string {
 	return ""
 }

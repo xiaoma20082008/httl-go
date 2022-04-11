@@ -14,10 +14,4 @@
  * limitations under the License.
  */
 
-package spi
-
-type Token struct {
-}
-
-type Lexer interface {
-}
+package utils

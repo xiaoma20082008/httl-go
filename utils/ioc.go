@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-package resolvers
+package utils
 
-import (
-	"github.com/xiaoma20082008/httl-go/spi/engines"
-	"testing"
-)
+func init() {
 
-func TestNewEngineResolver(t *testing.T) {
-	r := NewEngineResolver()
-	r.SetEngine(engines.NewDefaultEngine())
-	r.Resolve("")
-	t.Log(r)
 }
 
-func TestResolve(t *testing.T) {
+func Register(name string, value any) {
 
+}
+
+func Lookup(name string) any {
+	return nil
 }

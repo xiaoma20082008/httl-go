@@ -16,6 +16,8 @@
 
 package httl
 
+import "github.com/xiaoma20082008/httl-go/utils"
+
 type Engine interface {
 	GetName() string
 	GetVersion() string
@@ -30,5 +32,6 @@ type Engine interface {
 }
 
 func NewEngine() Engine {
-	return nil
+	e := utils.Lookup("engine")
+	return e.(Engine)
 }
